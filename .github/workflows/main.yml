@@ -7,12 +7,19 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+
     steps:
       - name: setup runner workspace
         uses: actions/checkout@v3
 
   run-linting:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
@@ -20,12 +27,11 @@ jobs:
       - name: super-Linter
         uses: super-linter/super-linter@v7.2.0
         env:
-          DEFAULT_BRANCH: main
-          DISABLE_STATUS_REPORTING: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
   run-script:
     runs-on: ubuntu-latest
+    
     steps:
       - name: demo shell script
         run: echo "Oh its ooon, Github Actions!! 🔥"
