@@ -1,0 +1,16 @@
+name: Github Actions workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup runner workspace
+        uses: actions/checkout@v3
+      - name: demo shell script
+        run: echo "Oh its ooon, Github Actions!! 🔥"
+  
