@@ -2,15 +2,24 @@ name: Github Actions workflow
 
 on:
   push:
-    branches:
-      - main
+    branches: ['main']
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: setup runner workspace
         uses: actions/checkout@v3
+
+  run-linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: super-Linter
+        uses: super-linter/super-linter@v7.2.0
+            
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
       - name: demo shell script
         run: echo "Oh its ooon, Github Actions!! 🔥"
   
